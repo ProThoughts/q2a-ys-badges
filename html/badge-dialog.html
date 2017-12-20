@@ -1,0 +1,50 @@
+<dialog class="mdl-dialog mdl-typography--text-center mdl-cell--6-col mdl-cell--4-col-phone mdl-cell centering__width-640" id="badge_dialog">
+    <h4 class="mdl-typography--headline" id="badge_dialog_title">回答者バッジを取得しました！</h4>
+    <div class="mdl-dialog__content" id="badge_dialog_body">
+        <img src="" alt="badge_image" style="min-width:100px" height="86px" width="72px">
+        <p class="mdl-typography--text-left margin--top-16px msg">
+            回答いただきありがとうございます。<br>
+            ^さんの当サイトへの貢献の表彰として<br>
+            バッジを進呈させていただきます。
+        </p>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button close">
+            <?php echo qa_lang('ysb/button_close'); ?>
+        </button>
+        <button type="button" class="mdl-button mdl-button--shadow-none mdl-button--colored" onclick="location.href = '<?php echo $badgesurl ?>'">
+            <?php echo qa_lang('ysb/button_show'); ?>
+        </button>
+    </div>
+</dialog>
+<script>
+
+    var i=0;
+    var bdialog = null;
+    var badgesobj = <?php echo json_encode($badgeobj); ?>;
+    function showDialogs(){
+        if( bdialog == null || bdialog == undefined ) {
+            bdialog = document.querySelector('#badge_dialog');
+            if (! bdialog.showModal) {
+                dialogPolyfill.registerDialog(bdialog);
+            }
+            bdialog.querySelector('#badge_dialog_title').innerHTML = badgesobj[i].title;
+            bdialog.querySelector('#badge_dialog_body p.msg').innerHTML = badgesobj[i].msg;
+            bdialog.querySelector('#badge_dialog_body img').setAttribute('src', badgesobj[i].img);
+            bdialog.querySelector('#badge_dialog .mdl-button.close').addEventListener('click', function() {
+                if (bdialog) {
+                    bdialog.close();
+                }
+                bdialog = null;
+            });
+            bdialog.showModal();
+            i++;
+        }
+        var timerId=setTimeout(showDialogs, 1200);
+        if(i >= badgesobj.length){
+            clearTimeout(timerId);
+        }
+    }
+    showDialogs();
+
+ </script>

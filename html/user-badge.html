@@ -1,0 +1,64 @@
+<style>
+.no-badge-icon {
+  opacity: .56;
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+</style>
+<div class="md-grid">
+  <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop mdl-cell--12-col">
+    <div class="mdl-grid">
+      <h2 class="mdl-typography--headline mdl-cell--12-col mdl-cell">
+        <?php echo qa_lang('ysb/page_title'); ?>
+      </h2><!-- .mdl-typography--subhead -->
+    </div><!-- .mdl-grid -->
+    <div class="mdl-grid">
+      <h3 class="mdl-typography--title mdl-cell--12-col mdl-cell margin--bottom-0">
+        <?php echo qa_lang('ysb/section_answer'); ?>
+      </h3><!-- .mdl-typography--subhead -->
+    </div><!-- .mdl-grid -->
+    <div class="mdl-grid">
+      <?php for($num=101; $num<=109; $num++): ?>
+        <div class="mdl-card mdl-cell mdl-cell--4-col mdl-cell--2-col-phone mdl-shadow--2dp padding--16px mdl-typography--text-center">
+          <img class="<?php echo $badges[$num] ? '' : $imgclass; ?>" src="<?php echo $imgurl.$num.'.svg'; ?>" alt="<?php echo qa_lang('ysb/badge_head_'.$num); ?>" height="86px" width="72px" style="margin: 0 auto;">
+          <h3 class="mdl-typography--subhead margin--bottom-16px <?php echo $badges[$num] ? '' : $headclass; ?>"><?php echo qa_lang('ysb/badge_head_'.$num); ?></h3><!-- .mdl-typography--menu -->
+          <p class="<?php echo $badges[$num] ? $txtclass : $txtclass2; ?> margin--bottom-0"><?php echo qa_lang('ysb/badge_body_'.$num); ?></p><!-- .mdl-typography--caption -->
+        </div><!-- .mdl-card mdl-cell mdl-cell--4-col -->
+      <?php endfor; ?>
+    </div>
+
+    <div class="mdl-grid">
+      <h3 class="mdl-typography--title mdl-cell--12-col mdl-cell margin--bottom-0">
+        <?php echo qa_lang('ysb/section_question'); ?>
+      </h3><!-- .mdl-typography--subhead -->
+    </div><!-- .mdl-grid -->
+    <div class="mdl-grid">
+      <?php for($num=201; $num<=209; $num++): ?>
+        <div class="mdl-card mdl-cell mdl-cell--4-col mdl-cell--2-col-phone mdl-shadow--2dp padding--16px mdl-typography--text-center">
+          <img class="<?php echo $badges[$num] ? '' : $imgclass; ?>" src="<?php echo $imgurl.$num.'.svg'; ?>" alt="<?php echo qa_lang('ysb/badge_head_'.$num); ?>" height="86px" width="72px" style="margin:0 auto;">
+          <h3 class="mdl-typography--subhead margin--bottom-16px <?php echo $badges[$num] ? '' : $headclass; ?>"><?php echo qa_lang('ysb/badge_head_'.$num); ?></h3><!-- .mdl-typography--menu -->
+          <p class="<?php echo $badges[$num] ? $txtclass : $txtclass2; ?> margin--bottom-0"><?php echo qa_lang('ysb/badge_body_'.$num); ?></p><!-- .mdl-typography--caption -->
+        </div><!-- .mdl-card mdl-cell mdl-cell--4-col -->
+      <?php endfor; ?>
+    </div>
+
+    <div class="mdl-grid">
+      <h3 class="mdl-typography--title mdl-cell--12-col mdl-cell margin--bottom-0">
+        <?php echo qa_lang('ysb/section_blog'); ?>
+      </h3><!-- .mdl-typography--subhead -->
+    </div><!-- .mdl-grid -->
+    <div class="mdl-grid">
+      <?php for($num=301; $num<=309; $num++): ?>
+        <div class="mdl-card mdl-cell mdl-cell--4-col mdl-cell--2-col-phone mdl-shadow--2dp padding--16px mdl-typography--text-center">
+          <img class="<?php echo $badges[$num] ? '' : $imgclass; ?>" src="<?php echo $imgurl.$num.'.svg'; ?>" alt="<?php echo qa_lang('ysb/badge_head_'.$num); ?>" height="86px" width="72px" style="margin:0 auto;">
+          <h3 class="mdl-typography--subhead margin--bottom-16px <?php echo $badges[$num] ? '' : $headclass; ?>"><?php echo qa_lang('ysb/badge_head_'.$num); ?></h3><!-- .mdl-typography--menu -->
+          <p class="<?php echo $badges[$num] ? $txtclass : $txtclass2; ?> margin--bottom-0"><?php echo qa_lang('ysb/badge_body_'.$num); ?></p><!-- .mdl-typography--caption -->
+        </div><!-- .mdl-card mdl-cell mdl-cell--4-col -->
+      <?php endfor; ?>
+    </div>
+
+  </div>
+</div>

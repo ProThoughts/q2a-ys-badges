@@ -1,0 +1,12 @@
+{
+	"name": "Ys Badge",
+	"uri": "http://github.com/yshiga/q2a-ys-badges",
+	"description": "provide simple badge functions",
+	"version": "1.0.0",
+	"date": "2017-08-09",
+	"author": "yshiga",
+	"author_uri": "http://38qa.net",
+	"license": "GPLv2",
+	"update_uri": "",
+	"min_q2a": "1.5"
+}

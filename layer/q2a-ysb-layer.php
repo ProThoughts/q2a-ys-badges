@@ -1,42 +1,44 @@
 <?php
+
+require_once YSB_DIR.'/qa-ysb-badge.php';
+require_once YSB_DIR.'/util/qa-ysb-html-builder.php';
+
 class qa_html_theme_layer extends qa_html_theme_base
 {
-  public function main()
-  {
-    if($this->template == 'badges'){
-        $html = file_get_contents(YSB_DIR . '/html/badges.html');
-        $this->output($html);
-
-/*
-      foreach($this->content['custom']['badge_info'] as $badge){
-        $this->output('・');
-        $this->output(qa_lang('ysb/badge_name_' . $badge['badgeid']));
-        $this->output('level: ' . $badge['level'] .  '/' . MAX_BADGE_LEVEL);
-        if($badge['level'] < MAX_BADGE_LEVEL) {
-          $this->output('次のバッチまで: ' . $badge['need_action_count'] . '回');
+    public function main_parts($content)
+    {
+        if($this->template == 'user-badge'){
+            $badges = $content['badges'];
+            qa_ysb_html_builder::output_user_badge($badges);
+        } else {
+            parent::main_parts($content);
         }
-        $this->output('<br>');
-      }
-      $html = '';
-
-*/
-    } else {
-      parent::main();
     }
-  }
-}
 
-/*
-array(5) {
-  ["badgeid"]=>
-  string(5) "10001"
-  ["level"]=>
-  string(1) "2"
-  ["next_action_count"]=>
-  string(2) "10"
-  ["need_action_count"]=>
-  int(2)
-  ["current_action_count"]=>
-  string(1) "8"
+    public function notices()
+    {
+        if (qa_is_logged_in()) {
+            $badges = qa_ysb_badge::find_by_not_noticed_badges(qa_get_logged_in_userid());
+            $badgeids = array_column($badges, 'badgeid');
+            if(count($badgeids) > 0) {
+                qa_ysb_html_builder::output_badge_dialog($badgeids);
+                $this->update_badges_flag($badgeids);
+            }
+        }
+        parent::notices();
+    }
+
+    /*
+     * バッジのshow_flag を 1 にする(ダイアログ表示済み)
+     */
+    private function update_badges_flag($badgeids)
+    {
+        $userid = qa_get_logged_in_userid();
+        foreach($badgeids as $id) {
+            $badge = new qa_ysb_badge($id);
+            $badge->set_show_flag(1);
+            $badge->update_badge($userid);
+            $badge = null;
+        }
+    }
 }
-*/
